@@ -1,0 +1,20 @@
+= form_for @attack, |
+           url: battle_villa_attacks_path(@battle.id, @villa.id) do |f|
+  - if @attack.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@attack.errors.count, "error")} prohibited this attack from being saved:"
+      %ul
+        - @attack.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :comment
+    = f.text_field :comment
+  .field
+    = f.label :result
+    = f.number_field :result
+  .actions
+    = f.submit 'Save'

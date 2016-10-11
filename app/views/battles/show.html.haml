@@ -1,0 +1,43 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @battle.code
+%p
+  %b Name:
+  = @battle.opponent_name
+%p
+  %b Base Count:
+  = @battle.base_count
+
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th No
+      %th Name
+      %th Comment
+  %tbody
+    - @battle.villas.each do |villa|
+      %tr
+        %td
+          = link_to "#{villa.no}.", edit_battle_villa_path(@battle.id, villa.id)
+        %td
+          = link_to "#{villa.name}", edit_battle_villa_path(@battle.id, villa.id)
+        %td
+          = link_to "#{villa.comment}", edit_battle_villa_path(@battle.id, villa.id)
+        - villa.attacks.each do |attack|
+          %td
+            = attack.name
+            %br
+            = attack.comment
+            %br
+            = attack.result
+        %td
+          = link_to 'Reserve', new_battle_villa_attack_path(@battle.id, villa.id)
+
+
+
+= link_to 'Edit', edit_battle_path(@battle)
+\|
+= link_to 'Back', battles_path

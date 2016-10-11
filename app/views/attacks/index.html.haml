@@ -1,0 +1,25 @@
+%h1 Listing attacks
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Comment
+      %th Result
+      %th
+      %th
+      %th
+
+  %tbody
+    - @attacks.each do |attack|
+      %tr
+        %td= attack.name
+        %td= attack.comment
+        %td= attack.result
+        %td= link_to 'Show', attack
+        %td= link_to 'Edit', edit_attack_path(attack)
+        %td= link_to 'Destroy', attack, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Attack', new_attack_path

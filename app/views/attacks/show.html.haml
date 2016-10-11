@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @attack.name
+%p
+  %b Comment:
+  = @attack.comment
+%p
+  %b Result:
+  = @attack.result
+
+= link_to 'Edit', edit_attack_path(@attack)
+\|
+= link_to 'Back', attacks_path
