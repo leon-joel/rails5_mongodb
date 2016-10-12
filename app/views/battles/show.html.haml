@@ -10,7 +10,6 @@
   %b Base Count:
   = @battle.base_count
 
-
 %table.table.table-striped
   %thead
     %tr
@@ -28,15 +27,16 @@
           = link_to "#{villa.comment}", edit_battle_villa_path(@battle.id, villa.id)
         - villa.attacks.each do |attack|
           %td
-            = attack.name
-            %br
-            = attack.comment
-            %br
-            = attack.result
+            - @attack_content = capture do
+              = attack.name
+              %br
+              = attack.comment
+              %br
+              = attack.result
+            = link_to(edit_battle_villa_attack_path(@battle.id, villa.id, attack.id)) do
+              = @attack_content
         %td
           = link_to 'Reserve', new_battle_villa_attack_path(@battle.id, villa.id)
-
-
 
 = link_to 'Edit', edit_battle_path(@battle)
 \|

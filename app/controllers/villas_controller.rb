@@ -15,10 +15,12 @@ class VillasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_battle
+      # TODO: Not Found 時処理
       @battle = Battle.find(params[:battle_id])
     end
 
     def set_villa
+      # TODO: Not Found 時処理
       @villa = @battle.villas.find(id: params[:id])
     end
 

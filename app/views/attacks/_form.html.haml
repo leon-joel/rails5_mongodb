@@ -1,5 +1,5 @@
 = form_for @attack, |
-           url: battle_villa_attacks_path(@battle.id, @villa.id) do |f|
+           url: @attack.persisted? ? battle_villa_attack_path(@battle.id, @villa.id, @attack.id) : battle_villa_attacks_path(@battle.id, @villa.id) do |f|
   - if @attack.errors.any?
     #error_explanation
       %h2= "#{pluralize(@attack.errors.count, "error")} prohibited this attack from being saved:"

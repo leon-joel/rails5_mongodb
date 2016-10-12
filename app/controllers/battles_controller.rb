@@ -51,6 +51,7 @@ class BattlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_battle
+      # TODO: Not Found 時処理
       @battle = Battle.find(params[:id])
     end
 
