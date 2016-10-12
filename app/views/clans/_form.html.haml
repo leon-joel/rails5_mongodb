@@ -1,0 +1,16 @@
+= form_for @clan do |f|
+  - if @clan.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@clan.errors.count, "error")} prohibited this clan from being saved:"
+      %ul
+        - @clan.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

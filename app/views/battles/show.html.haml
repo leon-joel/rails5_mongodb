@@ -40,4 +40,4 @@
 
 = link_to 'Edit', edit_battle_path(@battle)
 \|
-= link_to 'Back', battles_path
+= link_to 'Back', @battle.clan.nil? ? battles_path : clan_path(@battle.clan.id)

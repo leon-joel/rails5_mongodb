@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @clan.code
+%p
+  %b Name:
+  = @clan.name
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th 対戦相手
+      %th 人数
+      %th 登録日時
+      %th
+  %tbody
+    - @clan.battles.each do |battle|
+      %tr
+        %td
+          = link_to "#{battle.opponent_name}", battle_path(battle.id)
+        %td
+          = link_to "#{battle.base_count}", battle_path(battle.id)
+        %td
+          = link_to "#{battle.created_at}", battle_path(battle.id)
+        %td
+          = link_to 'Destroy', battle, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to "新しい対戦", clan_battles_new_path(@clan.id)
+
+= link_to 'Edit', edit_clan_path(@clan)
+\|
+= link_to 'Back', clans_path

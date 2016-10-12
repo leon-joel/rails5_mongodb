@@ -7,7 +7,9 @@ class Battle
   field :base_count, type: Integer
 
   embeds_many :villas, class_name: "Villa", cascade_callbacks: true
+  # cascade_callbacks: true にしないと、子要素に created_at などのtimestampsがセットされない
 
+  belongs_to :clan
 
   validates :code, presence: true
   validates :opponent_name, presence: true

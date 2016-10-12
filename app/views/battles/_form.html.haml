@@ -1,4 +1,5 @@
-= form_for @battle do |f|
+= form_for @battle, |
+           url: @clan.nil? ? battles_path : clan_battles_path(@clan.id) do |f|
   - if @battle.errors.any?
     #error_explanation
       %h2= "#{pluralize(@battle.errors.count, "error")} prohibited this battle from being saved:"
