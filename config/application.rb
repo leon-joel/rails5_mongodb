@@ -31,7 +31,7 @@ module Rails5Mongodb
     # config.i18n.default_locale = :ja
 
     # Viewの呼び出しをログ出力する?
-    # config.action_view.logger = nil
+    config.action_view.logger = nil
 
     # デフォルトのテンプレートエンジン :haml or :slim
     config.generators.template_engine = :haml

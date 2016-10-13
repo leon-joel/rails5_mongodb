@@ -1,6 +1,6 @@
 class BattlesController < ApplicationController
   before_action :set_clan, only: [ :new_clan_battle, :create_clan_battle ]
-  before_action :set_battle, only: [:show, :edit, :update, :destroy]
+  before_action :set_battle, only: [:show, :edit, :update, :destroy, :refresh ]
 
   # GET /battles
   def index
@@ -61,6 +61,17 @@ class BattlesController < ApplicationController
     redirect_to @battle.clan.nil? ? battles_url : clan_path(@battle.clan.id), notice: 'Battle was successfully destroyed.'
   end
 
+  # GET /battles/:battle_id/refresh  [Ajax]
+  def refresh
+    # p params[:last_refreshed]
+    # p params[:last_refreshed].to_i
+    last_refreshed = Time.at(params[:last_refreshed].to_i)
+    # p last_refreshed
+
+    @villas = @battle.villas.find_all { |villa| villa.updated_after?(last_refreshed) }
+    # p @villas
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clan
@@ -69,6 +80,7 @@ class BattlesController < ApplicationController
     end
     def set_battle
       # TODO: Not Found 時処理
+      @last_refreshed = Time.now
       @battle = Battle.find(params[:id])
     end
 

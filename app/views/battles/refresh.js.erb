@@ -1,0 +1,8 @@
+<%# battes#refresh アクション → このファイル %>
+
+
+<% @villas.each do |villa| %>
+$("#<%= dom_id(villa) %>").html("<%= escape_javascript(render('villas/villa_row', { villa: villa } )) %>");
+<% end %>
+
+$("#refresh_button").html("<%= escape_javascript(render('refresh_button')) %>");

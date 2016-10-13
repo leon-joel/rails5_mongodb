@@ -10,33 +10,18 @@
   %b Base Count:
   = @battle.base_count
 
-%table.table.table-striped
+= render "refresh_button"
+
+%table.table.table-hover.table-condensed
   %thead
     %tr
-      %th No
-      %th Name
-      %th Comment
-  %tbody
+      %th 村
+      %th{ colspan: 2 } 予約
+  %tbody#villa_rows
+    -# Rails5 Core から content_tag_for が外れたので、同じ事を自前で実装する。※Gem化されているが、Gemを増やしたくないので。https://github.com/rails/rails/issues/18337
     - @battle.villas.each do |villa|
-      %tr
-        %td
-          = link_to "#{villa.no}.", edit_battle_villa_path(@battle.id, villa.id)
-        %td
-          = link_to "#{villa.name}", edit_battle_villa_path(@battle.id, villa.id)
-        %td
-          = link_to "#{villa.comment}", edit_battle_villa_path(@battle.id, villa.id)
-        - villa.attacks.each do |attack|
-          %td
-            - @attack_content = capture do
-              = attack.name
-              %br
-              = attack.comment
-              %br
-              = attack.result
-            = link_to(edit_battle_villa_attack_path(@battle.id, villa.id, attack.id)) do
-              = @attack_content
-        %td
-          = link_to 'Reserve', new_battle_villa_attack_path(@battle.id, villa.id)
+      = content_tag :tr, id: dom_id(villa), class: dom_class(villa) do
+        = render 'villas/villa_row', { villa: villa }
 
 = link_to 'Edit', edit_battle_path(@battle)
 \|

@@ -1,0 +1,21 @@
+- @villa_cell = capture do
+  = "#{villa.no}. #{villa.name}"
+  %br
+  = villa.comment
+
+%td.villa_cell
+  = link_to(edit_battle_villa_path(@battle.id, villa.id)) do
+    = @villa_cell
+
+- villa.attacks.each do |attack|
+  %td
+    - @attack_content = capture do
+      = attack.name
+      %br
+      = attack.comment
+      %br
+      = attack.result
+    = link_to(edit_battle_villa_attack_path(@battle.id, villa.id, attack.id)) do
+      = @attack_content
+%td
+  = link_to 'Reserve', new_battle_villa_attack_path(@battle.id, villa.id)
