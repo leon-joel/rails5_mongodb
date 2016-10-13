@@ -53,10 +53,10 @@ RSpec.describe Battle, type: :model do
           l Time.utc(2016, 1, 2, 3, 4, 5)       # => 2016-01-02 03:04:05 UTC, UTC, Time
 
           puts "=== Time.local ==="
-          Time.local(2016, 1, 2, 3, 4, 5)       # => 2016-01-02 03:04:05 -0500, EST, Time
+          l Time.local(2016, 1, 2, 3, 4, 5)       # => 2016-01-02 03:04:05 -0500, EST, Time
 
           puts "=== Time.zone.local ==="
-          Time.zone.local(2016, 1, 2, 3, 4, 5)  # => 2016-01-02 03:04:05 +0900, JST, ActiveSupport::TimeWithZone
+          l Time.zone.local(2016, 1, 2, 3, 4, 5)  # => 2016-01-02 03:04:05 +0900, JST, ActiveSupport::TimeWithZone
 
           puts "### 経過時間（時刻の差） ###"
           elapsed = Time.current - Time.zone.local(2016, 1, 1)
