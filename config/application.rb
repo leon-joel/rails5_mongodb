@@ -26,6 +26,7 @@ module Rails5Mongodb
     config.time_zone = 'Tokyo'
     # http://qiita.com/sutoh/items/b7d23990abb9c5083daa
 
+    # === i18n.rb に移動 ※http://docs.komagata.org/5355 ===
     # ja.ymlを準備しているならコメントを外してもOK
     # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :ja

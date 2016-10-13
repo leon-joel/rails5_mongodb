@@ -60,7 +60,7 @@ RSpec.describe Battle, type: :model do
 
           puts "### 経過時間（時刻の差） ###"
           elapsed = Time.current - Time.zone.local(2016, 1, 1)
-          l elapsed                             # => 32400.0, Float
+          puts elapsed                          # => 32400.0
           puts "#{(elapsed / 3600).to_i} 時間"  # => 9時間
         end
 
