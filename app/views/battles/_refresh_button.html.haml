@@ -1,6 +1,6 @@
 -#最終更新日時はcookieではなく、URLのクエリー文字列としてサーバー側に返すようにする
 -# GET "/battles/57fdf4094812131344c3754f/refresh?last_refreshed=1476343998"
-= link_to(refresh_battle_path(@battle.id, last_refreshed: @last_refreshed.to_i), remote: true, id: "refresh_button", class: 'navbar-link' ) do
+= link_to(refresh_battle_path(@battle.id, last_refreshed: @current_time.to_i), remote: true, id: "refresh_button", class: 'navbar-link' ) do
   %span#last_refreshed_area_1.small
     更新: |
-    = convert_refreshed_time(@last_refreshed)
+    = convert_refreshed_time(@current_time)

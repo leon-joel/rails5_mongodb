@@ -80,7 +80,7 @@ class BattlesController < ApplicationController
     end
     def set_battle
       # TODO: Not Found 時処理
-      @last_refreshed = Time.now
+      @current_time = Time.current
       @battle = Battle.find(params[:id])
     end
 

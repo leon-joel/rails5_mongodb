@@ -8,13 +8,21 @@
     = @villa_cell
 
 - villa.attacks.each do |attack|
-  %td
+  %td.attack_cell
     - @attack_content = capture do
       = attack.name
+      - if attack.comment.present?
+        %br
+        = attack.comment
       %br
-      = attack.comment
-      %br
-      = attack.result
+        - @elapsed_hour = ((@current_time - attack.created_at) / 3600).to_i
+        - if attack.result != -1
+          = attack.result
+        - elsif @elapsed_hour < 2
+          %span.elapsed{ data: { created_at: attack.created_at.to_i } } 未
+        - else
+          %spen.elapsed.badge{ data: { created_at: attack.created_at.to_i } } #{@elapsed_hour}時間経過
+
     = link_to(edit_battle_villa_attack_path(@battle.id, villa.id, attack.id)) do
       = @attack_content
 %td
