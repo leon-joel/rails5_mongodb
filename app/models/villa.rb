@@ -7,7 +7,7 @@ class Villa
   field :comment, type: String
   embeds_many :attacks, class_name: "Attack", cascade_callbacks: true
 
-  embedded_in :battle, :inverse_of => :villas
+  belongs_to :battle, :inverse_of => :villas
 
   validates :no,
             presence: { message: 'は必須です。' },

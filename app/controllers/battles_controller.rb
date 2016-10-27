@@ -27,6 +27,7 @@ class BattlesController < ApplicationController
   # POST /battles
   def create
     @battle = create_battle
+    create_villas(@battle)
 
     if @battle.save
       redirect_to @battle, notice: 'Battle was successfully created.'
@@ -36,8 +37,8 @@ class BattlesController < ApplicationController
   end
   # POST /clans/:clan_id/battles
   def create_clan_battle
-    @battle = create_battle
-    @battle.clan = @clan
+    @battle = create_battle(@clan)
+    create_villas(@battle)
 
     if @battle.save && @clan.save
       redirect_to @battle, notice: 'Battle was successfully created.'
@@ -89,11 +90,18 @@ class BattlesController < ApplicationController
       params.require(:battle).permit(:code, :opponent_name, :base_count)
     end
 
-    def create_battle
+    def create_battle(clan=nil)
       battle = Battle.new(battle_params)
-      1.upto battle.base_count do |no|
-        battle.villas << Villa.new({no: no, name: "", comment: ""})
-      end
+      battle.clan = clan if clan.present?
+      battle.save!
       battle
+    end
+
+    def create_villas(battle)
+      1.upto battle.base_count do |no|
+        villa = Villa.new({no: no, name: "", comment: ""})
+        villa.battle = battle
+        villa.save!
+      end
     end
 end
